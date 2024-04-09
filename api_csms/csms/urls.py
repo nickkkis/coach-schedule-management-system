@@ -1,10 +1,10 @@
-from django.urls import path, include
+from django.urls import path
+
 from . import views
-from .views import ClassSchedulesListView, SignupSet, signUpTraining, viewTraining, cancelEnrollment, ActivityLogView
-# router = DefaultRouter()
-# router.register(r'', UserLogViewSet)
-from .views import ClassSchedulesListView, UserLogViewSet, UserViewSet, SignupSet, TokenRevokeSet, CustomAuthToken, \
-    LocationList, LocationDetails, ViewMemberTrainingEnrollment, ActivityList, ActivityLogSet, EquipmentViewSet,enrollmentStats, VisitorCountByHourViewSet, HoursCountByLocationViewSet
+from .views import ClassSchedulesListView, UserViewSet, SignupSet, TokenRevokeSet, CustomAuthToken, \
+    LocationList, LocationDetails, ViewMemberTrainingEnrollment, ActivityList, enrollmentStats, \
+    HoursCountByLocationViewSet
+from .views import signUpTraining, viewTraining, cancelEnrollment, ActivityLogView
 
 urlpatterns = [
     path('api/v1/signup/', SignupSet.as_view({'post': 'signup'})),

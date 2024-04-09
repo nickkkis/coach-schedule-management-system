@@ -1,36 +1,26 @@
-from django.db.models import Count
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.http.response import JsonResponse
-from .models import Training, Enrollments, Activity
-from .serializers import TrainingSerializer, EnrollmentsSerializer, ActivityLogSerializer, ActivitySerializer
-from rest_framework import viewsets, status, generics
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from . import models
-from django.utils import timezone
-from django_filters.rest_framework import DjangoFilterBackend
-# from django.contrib.auth.models import User
-from .serializers import TrainingSerializer
-from rest_framework import viewsets, status
-from rest_framework.decorators import action
-from .models import User_log, User, Location, ActivityLog, Activity
-from .serializers import UserLogSerializer, UserSerializer, LocationSerializer
-from rest_framework.authtoken.models import Token
-from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
-from rest_framework.authtoken.views import ObtainAuthToken
-from django.shortcuts import get_object_or_404
-from datetime import datetime
-from django.utils import timezone
-import collections
+from collections import defaultdict
 from datetime import datetime, timedelta
+
 import pytz
 from django.db.models import Count
-from collections import defaultdict
-import json
+from django.http.response import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.utils import timezone
+from rest_framework import viewsets, status
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.decorators import action
+from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from .models import Training, Enrollments
+from .models import User_log, User, Location, ActivityLog, Activity
+from .serializers import EnrollmentsSerializer, ActivityLogSerializer, ActivitySerializer
+# from django.contrib.auth.models import User
+from .serializers import TrainingSerializer
+from .serializers import UserLogSerializer, UserSerializer, LocationSerializer
 
-# Create your views here.
 
 class ClassSchedulesListView(APIView):
     permission_classes = [IsAdminUser]
@@ -330,26 +320,6 @@ class TokenRevokeSet(viewsets.ModelViewSet):
         return Response({'Logged out successfully!'}, status=status.HTTP_200_OK)
 
 
-# class CustomAuthToken(ObtainAuthToken):
-#     queryset = User.objects.all()
-#
-#     def post(self, request, *args, **kwargs):
-#         serializer = self.serializer_class(data=request.data,
-#                                            context={'request': request})
-#         serializer.is_valid(raise_exception=True)
-#         user = serializer.validated_data['user']
-#         nUser = User.objects.filter(username=user.username).get()
-#         if nUser.isNonMember():
-#             return Response({"Non-members can't login"}, status=status.HTTP_403_FORBIDDEN)
-#         token, created = Token.objects.get_or_create(user=user)
-#         return Response({
-#             'token': token.key,
-#             'first_name': user.first_name,
-#             'user_type': nUser.user_type,
-#             'user_id': nUser.id,
-#         })
-
-
 class CustomAuthToken(ObtainAuthToken):
     queryset = User.objects.all()
 
@@ -358,17 +328,10 @@ class CustomAuthToken(ObtainAuthToken):
                                            context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user']
-
-        # Фильтруем пользователей по имени и получаем первого пользователя, если он существует
         nUser = User.objects.filter(username=user.username).first()
-
         if nUser and nUser.isNonMember():
             return Response({"Non-members can't login"}, status=status.HTTP_403_FORBIDDEN)
-
-        # Создаем или получаем токен для пользователя
         token, created = Token.objects.get_or_create(user=user)
-
-        # Возвращаем токен и дополнительные данные
         return Response({
             'token': token.key,
             'first_name': user.first_name,

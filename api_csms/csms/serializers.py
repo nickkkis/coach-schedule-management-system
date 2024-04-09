@@ -1,15 +1,13 @@
-from django.forms import ValidationError
-from rest_framework import serializers
-from .models import Training, Enrollments
-from .models import Activity, ActivityLog, Location, User, User_log
-# Training Model Serializer
-from .models import Training, User_log, Location, User
-# from django.contrib.auth.models import User
-from .models import Training
-from .models import Activity, ActivityLog, User
 from datetime import datetime, timedelta
-from django.db.models import Q
+
 import pytz
+from django.db.models import Q
+from rest_framework import serializers
+
+from .models import Activity, ActivityLog, User
+from .models import Enrollments
+from .models import Training
+from .models import User_log, Location
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -22,8 +20,9 @@ class TrainingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Training
         fields = (
-        'training_id', 'instructor_name', 'training_type', 'start_time', 'end_time', 'max_capacity', 'current_capacity',
-        'location_id')
+            'training_id', 'instructor_name', 'training_type', 'start_time', 'end_time', 'max_capacity',
+            'current_capacity',
+            'location_id')
 
 
 class UserSerializer(serializers.ModelSerializer):
