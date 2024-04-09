@@ -6,7 +6,7 @@
 
 1. **Клонировать репозиторий:**
     ```bash
-    git clone https://github.com/your_username/your_repository.git
+    git clone https://github.com/nickkkis/coach-schedule-management-system.git
     ```
 
 2. **Перейти в каталог проекта:**
@@ -38,6 +38,8 @@
     ```bash
     python manage.py migrate
     ```
+
+    Загрузите фикстуры: Выполните команду loaddata для загрузки фикстур в базу данных
 
 6. **Запустить сервер:**
     ```bash
