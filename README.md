@@ -50,5 +50,5 @@
 
 ## Использование
 
-Вы можете использовать API для управления расписанием фитнес-тренеров согласно [документации API](link_to_api_docs).
+Вы можете использовать API для управления расписанием фитнес-тренеров согласно [документации API](https://github.com/nickkkis/coach-schedule-management-system/tree/master/Documentation).
 
