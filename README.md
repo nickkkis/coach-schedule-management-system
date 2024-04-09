@@ -1,9 +1,9 @@
 # Django (DRF) Backend для Управления Расписанием Фитнес-Тренеров
 
 Проект представляет собой бэкенд приложения для управления расписанием фитнес-тренеров с использованием Django Rest Framework (DRF) и базы данных PostgreSQL.
-![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/c2c9c6e9-23f3-4275-8464-fa92e485350a)
-![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/840a1b9d-6936-4330-a882-5bcab80e2b5b)
-![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/e4a70b33-e04a-4803-87b0-084fe162f307)
+![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/c2c9c6e9-23f3-4275-8464-fa92e485350a){:height="400px" width="400px"}
+![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/840a1b9d-6936-4330-a882-5bcab80e2b5b){:height="400px" width="400px"}
+![image](https://github.com/nickkkis/coach-schedule-management-system/assets/101864581/e4a70b33-e04a-4803-87b0-084fe162f307){:height="400px" width="400px"}
 
 
 
